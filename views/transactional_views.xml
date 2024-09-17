@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ownership Code Form View -->
+    <record id="view_ownership_code_form" model="ir.ui.view">
+        <field name="name">ownership.code.form</field>
+        <field name="model">ownership.code</field>
+        <field name="arch" type="xml">
+            <form string="Ownership Code">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Ownership Code" readonly="1"/>
+                            <field name="source_actor" string="Source Actor"/>
+                            <field name="destination_actor" string="Destination Actor"/>
+                            <field name="batch_code_id" string="Batch Code"/>
+                            <field name="quantity" string="Quantity"/>
+                            <field name="transaction_number" string="Transaction Number"/>
+                            <field name="product_id" string="Product"/>
+                            <field name="production_id" string="Production Order"/>
+                        </group>
+                        <group>
+                            <field name="history" string="History" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Ownership Code Tree View -->
+    <record id="view_ownership_code_tree" model="ir.ui.view">
+        <field name="name">ownership.code.tree</field>
+        <field name="model">ownership.code</field>
+        <field name="arch" type="xml">
+            <tree string="Ownership Codes">
+                <field name="name"/>
+                <field name="source_actor"/>
+                <field name="destination_actor"/>
+                <field name="batch_code_id"/>
+                <field name="quantity"/>
+                <field name="transaction_number"/>
+                <field name="product_id"/>
+                <field name="production_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Product Batch Form View -->
+    <record id="view_product_batch_form" model="ir.ui.view">
+        <field name="name">product.batch.form</field>
+        <field name="model">product.batch</field>
+        <field name="arch" type="xml">
+            <form string="Product Batch">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" string="Product"/>
+                            <field name="batch_code" string="Batch Code"/>
+                            <field name="available_quantity" string="Available Quantity"/>
+                        </group>
+                        <notebook>
+                            <page string="Ownership Codes">
+                                <field name="ownership_codes">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="quantity"/>
+                                        <field name="transaction_number"/>
+                                        <field name="source_actor"/>
+                                        <field name="destination_actor"/>
+                                        <field name="production_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Product Batch Tree View -->
+    <record id="view_product_batch_tree" model="ir.ui.view">
+        <field name="name">product.batch.tree</field>
+        <field name="model">product.batch</field>
+        <field name="arch" type="xml">
+            <tree string="Product Batches">
+                <field name="product_id"/>
+                <field name="batch_code"/>
+                <field name="available_quantity"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Ownership Code -->
+    <record id="action_ownership_code" model="ir.actions.act_window">
+        <field name="name">Ownership Codes</field>
+        <field name="res_model">ownership.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_ownership_code_tree"/>
+        <field name="help" type="html">
+            <p>
+                Create and manage ownership codes that track the flow of products through different actors.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action for Product Batch -->
+    <record id="action_product_batch" model="ir.actions.act_window">
+        <field name="name">Product Batches</field>
+        <field name="res_model">product.batch</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_product_batch_tree"/>
+        <field name="help" type="html">
+            <p>
+                Track product batches and their associated ownership codes.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item for Ownership Codes under ILO Farming Perspective -->
+    <menuitem id="menu_ilo_farming_ownership_code"
+              name="Ownership Codes"
+              parent="menu_ilo_farming_root"
+              action="action_ownership_code"
+              sequence="20"/>
+
+    <!-- Menu Item for Product Batches under ILO Farming Perspective -->
+    <menuitem id="menu_ilo_farming_product_batch"
+              name="Product Batches"
+              parent="menu_ilo_farming_root"
+              action="action_product_batch"
+              sequence="30"/>
+
+</odoo>

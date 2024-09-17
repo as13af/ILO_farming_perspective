@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="action_ilo_assets" model="ir.actions.act_window">
+        <field name="name">Assets</field>
+        <field name="res_model">ilo.assets</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_ilo_assets_tree"/>
+    </record>
+
+    <!-- Main Parent Menu (if not already defined) -->
+    <menuitem id="menu_ilo_farming_root" name="ILO Farming Perspective" sequence="10"/>
+
+    <record id="view_ilo_assets_tree" model="ir.ui.view">
+      <field name="name">ilo.assets.tree</field>
+      <field name="model">ilo.assets</field>
+      <field name="arch" type="xml">
+        <tree string="Assets">
+          <field name="name"/>
+          <field name="employee_id"/>
+          <field name="ownership_status"/>
+          <field name="area_ha"/>
+          <field name="planting_status"/>
+          <field name="planting_progress"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_ilo_assets_form" model="ir.ui.view">
+      <field name="name">ilo.assets.form</field>
+      <field name="model">ilo.assets</field>
+      <field name="arch" type="xml">
+        <form string="Asset">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="employee_id"/>
+              <field name="coordinates"/>
+              <field name="ownership_status"/>
+              <field name="area_ha"/>
+              <field name="address"/>
+              <field name="planting_status"/>
+              <field name="planting_progress"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>

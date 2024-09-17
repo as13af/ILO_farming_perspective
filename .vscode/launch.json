@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Uqi Odoo Baru",
+            "type": "debugpy",
+            "request": "launch",
+            "stopOnEntry": false,
+            "console": "integratedTerminal",
+            "pythonPath": "C:/Program Files/Odoo 14.0.20231205/python/python.exe",
+            "program": "C:/Program Files/Odoo 14.0.20231205/server/odoo-bin",
+            "args": [
+                "--config=C:\\Program Files\\Odoo 14.0.20231205\\server\\odoo\\addons\\ILO_farming_perspective\\ilo_odoo.conf",
+                "--database=DatabaseBaru",
+                "-u", "ilo_farming_perspective"
+            ]
+        }
+    ]
+}
